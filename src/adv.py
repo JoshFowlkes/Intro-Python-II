@@ -1,4 +1,8 @@
+import textwrap
 from room import Room
+from player import Player
+from item import Item
+
 
 # Declare all the rooms
 
@@ -33,11 +37,44 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+''' Items '''
+
+
+''' Move Around '''
+def move_direction(direction, current_room):
+    ''' 
+    Function to allow the player to move around, and print an error if attempting
+    to access an area that they aren't allowed to access/does not exist
+    Direction can 'n' 's' 'e' w' 
+    current_room can be 'foyer' 'outside' 'overlook' 'narrow' 'treasure'
+    '''
+    attribute = direction + '_to'
+
+    if hasattr(current_room, attribute):
+        return getattr(current_room, attribute)
+    
+    print('You Shall not Pass.')
+
+    return current_room
+
+
+def found_item(name, current_room):
+    for i in current_room.contents:
+        if i.name == name:
+            return i
+    
+    return 
+
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
+
+''' Creating a new player from using the Player class, starting them from outside '''
+
+player1 = Player('Player 1', room['outside'])
 
 # Write a loop that:
 #
