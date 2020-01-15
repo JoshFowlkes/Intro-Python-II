@@ -10,3 +10,11 @@ class Item:
 
     def __str__(self):
         return self.description
+
+class Money(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
+
+class Health(Item):
+    def __init__(self, name, description):
+        super().__init__(name, description)
