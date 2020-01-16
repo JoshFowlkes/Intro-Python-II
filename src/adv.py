@@ -50,10 +50,16 @@ def move_direction(direction, current_room):
     '''
     attribute = direction + '_to'
 
+    ''' 
+    Using the hasattr function to determine if the object has attributes
+    with the given names, then using getattr to retrieve if they exist
+    
+    '''
     if hasattr(current_room, attribute):
         return getattr(current_room, attribute)
     
-    print('You Shall not Pass.')
+
+    print('YOU SHALL NOT... PASSSSSS!!!!')
 
     return current_room
 
@@ -62,6 +68,7 @@ def found_item(name, current_room):
     for i in current_room.contents:
         if i.name == name:
             return i
+
     
     return 
 
@@ -74,7 +81,23 @@ def found_item(name, current_room):
 
 ''' Creating a new player from using the Player class, starting them from outside '''
 
-player1 = Player('Player 1', room['outside'])
+player1 = Player(input('Please Enter your Name: '), room['outside'])
+
+#print(player1.name)
+#print(player1.current_room)
+
+directions = ['n', 's', 'e', 'w']
+
+# Create Basic REPL loop
+while True:
+    cmd = input('Enter Direction~~>').lower()
+    if cmd in directions:
+        player1.travel(cmd)
+    elif cmd == 'q':
+        print('Goodbye!')
+        break
+    else:
+        print('I did not recognize that command')
 
 # Write a loop that:
 #
